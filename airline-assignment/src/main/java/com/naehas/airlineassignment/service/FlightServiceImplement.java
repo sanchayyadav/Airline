@@ -7,29 +7,29 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.naehas.airlineassignment.crud.repository.AirlineRepository;
+import com.naehas.airlineassignment.crud.repository.FlightRepository;
 import com.naehas.airlineassignment.entity.Flight;
 
 @Service
 public class FlightServiceImplement implements FlightService {
 
-	private AirlineRepository airlineRepository;
+	private FlightRepository flightRepository;
 
 	@Autowired
-	public FlightServiceImplement(AirlineRepository theAirlineRepository) {
-		airlineRepository = theAirlineRepository;
+	public FlightServiceImplement(FlightRepository theFlightRepository) {
+		flightRepository = theFlightRepository;
 	}
 
 	@Override
 	public List<Flight> findAll() {
 
-		return airlineRepository.findAll();
+		return flightRepository.findAll();
 	}
 
 	@Override
 	public Flight findById(int theId) {
 
-		Optional<Flight> result = airlineRepository.findById(theId);
+		Optional<Flight> result = flightRepository.findById(theId);
 		Flight theFlight = null;
 
 		if (result.isPresent()) {
@@ -44,12 +44,12 @@ public class FlightServiceImplement implements FlightService {
 	@Override
 	public void save(Flight theFlight) {
 
-		airlineRepository.save(theFlight);
+		flightRepository.save(theFlight);
 	}
 
 	@Override
 	public void deleteById(int theId) {
-		airlineRepository.deleteById(theId);
+		flightRepository.deleteById(theId);
 	}
 
 }
