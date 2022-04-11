@@ -35,7 +35,7 @@ public class FlightRoutes {
 	private String arrivesOn;
 	
 	
-	@OneToOne(fetch=FetchType.LAZY,mappedBy="flightRoutes",cascade={CascadeType.MERGE,CascadeType.DETACH,
+	@OneToOne(fetch=FetchType.LAZY,cascade={CascadeType.MERGE,CascadeType.DETACH,
 			CascadeType.REFRESH,CascadeType.PERSIST})
 	@JoinColumn(name="fare_id")
 	private FlightRoutesFares flightRoutesFare;
