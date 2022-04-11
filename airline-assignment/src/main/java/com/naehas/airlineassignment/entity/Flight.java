@@ -1,5 +1,6 @@
 package com.naehas.airlineassignment.entity;
 
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,7 +30,7 @@ public class Flight {
 	private String flightNo;
 	
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL) 
-	private FlightRoutes flightRoutes;
+	private List<FlightRoutes> flightRoutes;
 	
 	
 	public Flight() {
