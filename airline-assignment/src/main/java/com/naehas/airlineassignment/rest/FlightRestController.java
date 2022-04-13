@@ -15,7 +15,7 @@ import com.naehas.airlineassignment.entity.Flight;
 import com.naehas.airlineassignment.service.FlightService;
 
 @RestController
-@RequestMapping("/flight")
+@RequestMapping("/flights")
 public class FlightRestController {
 
 	private FlightService flightService;
