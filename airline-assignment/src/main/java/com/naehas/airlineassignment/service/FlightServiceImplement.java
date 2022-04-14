@@ -1,7 +1,6 @@
 package com.naehas.airlineassignment.service;
 
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +51,12 @@ public class FlightServiceImplement implements FlightService {
 		flightRepository.deleteById(theId);
 	}
 
+	@Override
+	public List<Flight> findAirline(String airline){
+		if(airline == null) {
+			throw new RuntimeException("airline not available");
+		}
+		return flightRepository.findAirline(airline);
+	}
+	
 }
