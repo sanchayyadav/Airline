@@ -2,6 +2,8 @@ package com.naehas.airlineassignment.rest;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +43,7 @@ public class FlightRestController {
 
 	@PostMapping("/flightlist")
 	public Flight addFlight(@RequestBody Flight theFlight) {
-		theFlight.setId(0);
+		theFlight.setId(null);
 		flightService.save(theFlight);
 		return theFlight;
 
@@ -54,15 +56,17 @@ public class FlightRestController {
 	}
 
 	@DeleteMapping("/flightlist/{flightId}")
-	public String deleteFlight(@PathVariable int theFlight) {
-		Flight tempFlight = flightService.findById(theFlight);
+	public String deleteFlight(@PathVariable int flightId) {
+		Flight tempFlight = flightService.findById(flightId);
 
 		if (tempFlight == null) {
-			throw new RuntimeException("Flight not find " + theFlight);
+			throw new RuntimeException("Flight not find " + flightId);
 
 		}
 
-		flightService.deleteById(theFlight);
+		flightService.deleteById(flightId);
 		return "Deleted flight id " + tempFlight;
 	}
+	
+
 }
