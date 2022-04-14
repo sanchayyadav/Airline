@@ -51,5 +51,22 @@ public class FlightRoutesFaresServiceImplement implements FlightRoutesFaresServi
 	public void deleteById(int theId) {
 		flightRoutesFaresRepository.deleteById(theId);
 	}
+	
+	@Override
+	public List<FlightRoutesFares> findAllByOrderByFareDesc(){
+		return flightRoutesFaresRepository.findAllByOrderByFareDesc();
+	} 
+
+	@Override
+	public List<FlightRoutesFares> fareUpto(int fare) {
+		
+		return flightRoutesFaresRepository.fareUpto(fare);
+	}
+
+	@Override
+	public List<FlightRoutesFares> fareRefundable(boolean refund) {
+		
+		return flightRoutesFaresRepository.fareRefundable(refund);
+	}
 
 }
