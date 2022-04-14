@@ -1,5 +1,6 @@
 package com.naehas.airlineassignment.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,4 +53,22 @@ public class FlightRoutesServiceImplements implements FlightRoutesService {
 		flightRoutesRepository.deleteById(theId);
 	}
 
+	@Override
+	public List<FlightRoutes> findAllByOrderByDepartsOnDesc() {
+		
+		return flightRoutesRepository.findAllByOrderByDepartsOnDesc();
+	}
+	@Override
+	public List<FlightRoutes> searchFlightRoutes(String departureLocation, String arrivalLocation,String departsOn) {
+		if(departureLocation == null) {
+			throw new RuntimeException("departureLocation missing");
+		}
+		else if(arrivalLocation == null) {
+			throw new RuntimeException("arrivalLocation missing");
+		}
+		else if(departsOn == null) {
+			throw new RuntimeException("Departing time is missing");
+		}
+		return flightRoutesRepository.search(departureLocation, arrivalLocation, departsOn);
+	}
 }
