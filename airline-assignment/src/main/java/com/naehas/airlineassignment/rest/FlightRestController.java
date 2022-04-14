@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.naehas.airlineassignment.entity.Flight;
@@ -67,6 +68,10 @@ public class FlightRestController {
 		flightService.deleteById(flightId);
 		return "Deleted flight id " + tempFlight;
 	}
-	
+
+	@GetMapping("/flightlist/airlines")
+	public List<Flight> findAirline(@RequestParam String airline) {
+		return flightService.findAirline(airline);
+	}
 
 }
