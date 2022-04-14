@@ -13,4 +13,10 @@ public interface FlightRoutesFaresService  {
 	public void save(FlightRoutesFares theFlightRoutesFares);
 
 	public void deleteById(int theId);
+
+	public List<FlightRoutesFares> findAllByOrderByFareDesc();
+
+	public List<FlightRoutesFares> fareUpto(int fare);
+
+	public List<FlightRoutesFares> fareRefundable(boolean refund);
 }
