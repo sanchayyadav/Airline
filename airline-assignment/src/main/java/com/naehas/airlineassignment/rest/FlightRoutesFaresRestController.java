@@ -2,6 +2,7 @@ package com.naehas.airlineassignment.rest;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.naehas.airlineassignment.entity.FlightRoutes;
 import com.naehas.airlineassignment.entity.FlightRoutesFares;
 import com.naehas.airlineassignment.service.FlightRoutesFaresService;
 
@@ -62,5 +63,21 @@ public class FlightRoutesFaresRestController {
 		}
 		flightRoutesFaresService.deleteById(flightRoutesFaresId);
 		return "Deleted Flight Routes Fares" + theFlightRoutesFares;
+	}
+	
+	@GetMapping("/flightroutesfares/sortByDesc")
+	public List<FlightRoutesFares> sortByDesc(){
+		return flightRoutesFaresService.findAllByOrderByFareDesc();
+	}
+	
+	@GetMapping("/flightroutesfares/fareUpto")
+	public List<FlightRoutesFares> fareUpto(@RequestParam int fare){
+		return flightRoutesFaresService.fareUpto(fare);
+	}
+	
+	
+	@GetMapping("/flightroutesfares/fareRefundable")
+	public List<FlightRoutesFares> fareRefundable(@RequestParam boolean refund){
+		return flightRoutesFaresService.fareRefundable(refund);
 	}
 }
