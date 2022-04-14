@@ -1,5 +1,6 @@
 package com.naehas.airlineassignment.rest;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.naehas.airlineassignment.entity.FlightRoutes;
@@ -38,21 +40,21 @@ public class FlightRoutesRestController {
 		}
 		return theFlightRoutes;
 	}
-	
-	
+
 	@PostMapping("/flightroutes")
 	public FlightRoutes addFlightRoutes(@RequestBody FlightRoutes theFlightRoutes) {
 		theFlightRoutes.setId(0);
 		flightRoutesService.save(theFlightRoutes);
 		return theFlightRoutes;
 	}
-	
-	
+
 	@PutMapping("/flightroutes")
 	public FlightRoutes updateFlightRoutes(@RequestBody FlightRoutes theFlightRoutes) {
 		flightRoutesService.save(theFlightRoutes);
 		return theFlightRoutes;
 	}
+
+
 	
 	@DeleteMapping("/flightroutes/{flightRoutesI}")
 	public String deleteFlightRoutes(@PathVariable int flightRoutesI) {
@@ -63,5 +65,20 @@ public class FlightRoutesRestController {
 		}
 		flightRoutesService.deleteById(flightRoutesI);
 		return "Deleted Flight Routes" + flightRoutesI;
+	}
+
+	@GetMapping("/flightroutes/sortByDepartsOnDesc")
+	public List<FlightRoutes> sortDeparts() {
+		return flightRoutesService.findAllByOrderByDepartsOnDesc();
+	}
+
+	@GetMapping("/flightroutes/search")
+	public List<FlightRoutes> searchFlightRoutes(@RequestParam("departureLocation") String departureLocation,
+			@RequestParam("arrivalLocation") String arrivalLocation, @RequestParam("departsOn") String departsOn) {
+
+		List<FlightRoutes> theFlightRoutes = flightRoutesService.searchFlightRoutes(departureLocation, arrivalLocation,
+				departsOn);
+
+		return theFlightRoutes;
 	}
 }
