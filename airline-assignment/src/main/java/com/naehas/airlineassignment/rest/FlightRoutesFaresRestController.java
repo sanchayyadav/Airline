@@ -31,11 +31,11 @@ public class FlightRoutesFaresRestController {
 	}
 
 	@GetMapping("/flightroutesfares/{flightroutesfaresId}")
-	public FlightRoutesFares getFlightRoutesFares(@PathVariable int theFlightRoutesFareId) {
-		FlightRoutesFares theFlightRoutes = flightRoutesFaresService.findById(theFlightRoutesFareId);
+	public FlightRoutesFares getFlightRoutesFares(@PathVariable int flightroutesfaresId) {
+		FlightRoutesFares theFlightRoutes = flightRoutesFaresService.findById(flightroutesfaresId);
 
 		if (theFlightRoutes == null) {
-			throw new RuntimeException("Flight Id not find" + theFlightRoutesFareId);
+			throw new RuntimeException("Flight Id not find" + flightroutesfaresId);
 		}
 		return theFlightRoutes;
 	}
@@ -54,13 +54,13 @@ public class FlightRoutesFaresRestController {
 	}
 
 	@DeleteMapping("/flightroutesfares/{flightRoutesFaresId}")
-	public String deleteFlightRoutesFares(@PathVariable int theFlightRoutesFaresId) {
-		FlightRoutesFares theFlightRoutesFares = flightRoutesFaresService.findById(theFlightRoutesFaresId);
+	public String deleteFlightRoutesFares(@PathVariable int flightRoutesFaresId) {
+		FlightRoutesFares theFlightRoutesFares = flightRoutesFaresService.findById(flightRoutesFaresId);
 
 		if (theFlightRoutesFares == null) {
-			throw new RuntimeException("Flight route not  able to find " + theFlightRoutesFaresId);
+			throw new RuntimeException("Flight route not  able to find " + flightRoutesFaresId);
 		}
-		flightRoutesFaresService.deleteById(theFlightRoutesFaresId);
+		flightRoutesFaresService.deleteById(flightRoutesFaresId);
 		return "Deleted Flight Routes Fares" + theFlightRoutesFares;
 	}
 }
