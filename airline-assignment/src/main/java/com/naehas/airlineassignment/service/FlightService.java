@@ -13,4 +13,8 @@ public interface FlightService {
 	public void save(Flight theFlight);
 
 	public void deleteById(int theId);
+
+	public List<Flight> findAirline(String airline);
+	
+
 }
